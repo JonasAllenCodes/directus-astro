@@ -21,7 +21,7 @@ type Post = {
     author: Author;
     content: string;
     published_date: string;
-    slug: string:
+    slug: string;
 }
 
 type Schema = {
