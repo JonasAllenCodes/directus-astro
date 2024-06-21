@@ -20,7 +20,7 @@ console.log(post.content);
 
 <Layout title={post.title}>
     <main>
-        <img src={`http://localhost:8055/assets/${post.image}?width=500`} />
+        <img src={`${import.meta.env.PUBLIC_DIRECTUS_ADDRESS}/assets/${post.image}?width=500`} />
         <h1>{post.title}</h1>
         <div set:html={post.content} />
     </main>
