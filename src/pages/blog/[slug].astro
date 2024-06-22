@@ -6,6 +6,11 @@ import { readItems, readItem } from "@directus/sdk";
 export async function getStaticPaths() {
     const posts = await directus.request(readItems("posts", {
         fields: ["*", { relation: ["*"] }],
+        filter: {
+          status: {
+            _eq: "published",
+          },
+        },
     }));
     return posts.map((post) => ({
         params: { slug: post.slug },

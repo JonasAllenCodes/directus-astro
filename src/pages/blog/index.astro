@@ -11,6 +11,11 @@ const posts = await directus.request(
             "published_date",
             { author: ["name"] },
         ],
+        filter: {
+          status: {
+            _eq: "published",
+          },
+        },
         sort: ["-published_date"],
     })
 );
