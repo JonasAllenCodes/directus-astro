@@ -1,4 +1,4 @@
-import { createDirectus, rest } from "@directus/sdk";
+import { createDirectus, rest, staticToken } from "@directus/sdk";
 
 type Global = {
     title: string;
@@ -32,6 +32,9 @@ type Schema = {
     pages: Page[];
 }
 
-const directus = createDirectus<Schema>(import.meta.env.PUBLIC_DIRECTUS_ADDRESS).with(rest());
+const directus =
+    createDirectus<Schema>(import.meta.env.DIRECTUS_ADDRESS)
+        .with(staticToken(import.meta.env.DIRECTUS_STATIC_TOKEN))
+        .with(rest());
 
 export default directus;

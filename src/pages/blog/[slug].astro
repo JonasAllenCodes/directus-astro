@@ -33,7 +33,7 @@ const formattedPublishedDate = new
 
 <Layout title={post.title}>
     <main>
-        <img src={`${import.meta.env.PUBLIC_DIRECTUS_ADDRESS}/assets/${post.image}?width=500`} />
+        <img src={`${import.meta.env.DIRECTUS_ADDRESS}/assets/${post.image}?width=500`} />
         <h1>{post.title}</h1>
         <span>By {post.author.name}, Published on {formattedPublishedDate}</span>
         <div set:html={post.content} />
