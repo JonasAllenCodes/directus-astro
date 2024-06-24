@@ -5,7 +5,7 @@ import { readItems, readItem } from "@directus/sdk";
 
 export async function getStaticPaths() {
     const posts = await directus.request(readItems("posts", {
-        fields: ["*", { relation: ["*"] }],
+        fields: ["*", { author: ["name"] }],
         filter: {
           status: {
             _eq: "published",
@@ -18,13 +18,24 @@ export async function getStaticPaths() {
     }));
 }
 
+const dateOptions: object = {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+};
+
 const post = Astro.props;
+
+const formattedPublishDate = new
+    Date(post.published_date)
+    .toLocaleDateString("en-US", dateOptions);
 ---
 
 <Layout title={post.title}>
     <main>
         <img src={`${import.meta.env.PUBLIC_DIRECTUS_ADDRESS}/assets/${post.image}?width=500`} />
         <h1>{post.title}</h1>
+        <span>By {post.author.name}, Published on {formattedPublishDate}</span>
         <div set:html={post.content} />
     </main>
 </Layout>

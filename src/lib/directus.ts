@@ -6,6 +6,7 @@ type Global = {
 }
 
 type Author = {
+    id: number;
     name: string;
 }
 
@@ -18,6 +19,7 @@ type Page = {
 type Post = {
     image: string;
     title: string;
+    status: string;
     author: Author;
     content: string;
     published_date: string;
