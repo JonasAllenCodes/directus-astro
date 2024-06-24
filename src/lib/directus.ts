@@ -28,6 +28,7 @@ type Post = {
 
 type Schema = {
     posts: Post[];
+    authors: Author[];
     global: Global;
     pages: Page[];
 }
