@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import directus from "../../lib/directus";
-import { readItems, readItem } from "@directus/sdk";
+import { readItems } from "@directus/sdk";
 
 export async function getStaticPaths() {
     const posts = await directus.request(readItems("posts", {
@@ -33,7 +33,7 @@ const formattedPublishedDate = new
 
 <Layout title={post.title}>
     <main>
-        <img src={`${import.meta.env.DIRECTUS_ADDRESS}/assets/${post.image}?width=500`} />
+        <img src={`${import.meta.env.DIRECTUS_ADDRESS}/assets/${post.image}/${post.slug}.jpg?width=500&quality=70&format=auto`} />
         <h1>{post.title}</h1>
         <span>By {post.author.name}, Published on {formattedPublishedDate}</span>
         <div set:html={post.content} />
