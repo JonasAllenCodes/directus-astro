@@ -26,7 +26,7 @@ const dateOptions: object = {
 
 const post = Astro.props;
 
-const formattedPublishDate = new
+const formattedPublishedDate = new
     Date(post.published_date)
     .toLocaleDateString("en-US", dateOptions);
 ---
@@ -35,7 +35,7 @@ const formattedPublishDate = new
     <main>
         <img src={`${import.meta.env.PUBLIC_DIRECTUS_ADDRESS}/assets/${post.image}?width=500`} />
         <h1>{post.title}</h1>
-        <span>By {post.author.name}, Published on {formattedPublishDate}</span>
+        <span>By {post.author.name}, Published on {formattedPublishedDate}</span>
         <div set:html={post.content} />
     </main>
 </Layout>

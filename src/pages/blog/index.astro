@@ -19,6 +19,10 @@ const posts = await directus.request(
         sort: ["-published_date"],
     })
 );
+
+function formattedPublishedDate (publishedDate) {
+  return new Date(publishedDate).toLocaleDateString("en-US");
+}
 ---
 
 <Layout title="Blog">
@@ -32,7 +36,9 @@ const posts = await directus.request(
                     <h2>{post.title}</h2>
                   </a>
                   <span>
-                    {post.published_date} &bull; {post.author.name}
+                    {formattedPublishedDate(posts[0].published_date)}
+                    &bull;
+                    {post.author.name}
                   </span>
                 </li>
               ))
