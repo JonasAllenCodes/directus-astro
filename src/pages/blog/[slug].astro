@@ -5,7 +5,10 @@ import { readItems } from "@directus/sdk";
 
 export async function getStaticPaths() {
     const posts = await directus.request(readItems("posts", {
-        fields: ["*", { author: ["name"] }],
+        fields: ["*", {
+            author: ["name"],
+            image: ["id", "title", "description"]
+         }],
         filter: {
           status: {
             _eq: "published",
@@ -33,7 +36,7 @@ const formattedPublishedDate = new
 
 <Layout title={post.title}>
     <main>
-        <img src={`${import.meta.env.DIRECTUS_ADDRESS}/assets/${post.image}/${post.slug}.jpg?width=500&quality=70&format=auto`} />
+        <img src={`${import.meta.env.DIRECTUS_ADDRESS}/assets/${post.image.id}/${post.slug}.jpg?width=500&quality=70&format=auto`} alt={post.image.description ?? ""} />
         <h1>{post.title}</h1>
         <span>By {post.author.name}, Published on {formattedPublishedDate}</span>
         <div set:html={post.content} />
