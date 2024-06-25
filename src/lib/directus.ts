@@ -17,7 +17,7 @@ type Page = {
 }
 
 type Post = {
-    image: string;
+    image: PostImage;
     title: string;
     status: string;
     author: Author;
@@ -26,9 +26,16 @@ type Post = {
     slug: string;
 }
 
+type PostImage = {
+    id: number;
+    title: string;
+    description: string;
+}
+
 type Schema = {
     posts: Post[];
     authors: Author[];
+    post_image: PostImage[];
     global: Global;
     pages: Page[];
 }
